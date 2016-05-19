@@ -2,6 +2,10 @@
 
 Yet another REST client based on Restify.
 
+[![Build Status](https://travis-ci.org/killmenot/restify-rest-client.svg?branch=master)](https://travis-ci.org/killmenot/restify-rest-client)
+[![Dependency Status](https://gemnasium.com/badges/github.com/killmenot/restify-rest-client.svg)](https://gemnasium.com/github.com/killmenot/restify-rest-client)
+[![npm version](https://badge.fury.io/js/restify-rest-client.svg)](https://badge.fury.io/js/restify-rest-client)
+
 
 ## Install
 
