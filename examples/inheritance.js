@@ -1,3 +1,5 @@
+'use strict';
+
 var RestClient = require('restify-rest-client');
 var util = require('util');
 

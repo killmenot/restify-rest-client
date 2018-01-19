@@ -1,3 +1,5 @@
+'use strict';
+
 var RestClient = require('restify-rest-client');
 var CustomCredentialsProvider = require('./custom_credentials_provider');
 

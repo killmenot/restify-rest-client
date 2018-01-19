@@ -1,3 +1,5 @@
+'use strict';
+
 var RestClient = require('./lib/rest_client');
 var DefaultCredentialsProvider = require('./lib/credentials_providers/default');
 

@@ -6,7 +6,7 @@ var chai = require('chai');
 var expect = chai.expect;
 var sinon = require('sinon');
 var sinonChai = require('sinon-chai');
-var restify = require('restify');
+var restifyClients = require('restify-clients');
 var server = require('./utils/server');
 var RestClient = require('../').RestClient;
 var DefaultCredentialsProvider = require('../').DefaultCredentialsProvider;
@@ -27,10 +27,10 @@ describe('RestClient', function () {
   };
 
   before(function (done) {
-      server.listen(port, function () {
-        restClient = new RestClient(options);
-        done();
-      });
+    server.listen(port, function () {
+      restClient = new RestClient(options);
+      done();
+    });
   });
 
   after(function () {
@@ -54,7 +54,7 @@ describe('RestClient', function () {
   });
 
   it('should have client defined', function () {
-    expect(restClient.client).to.be.an.instanceof(restify.JsonClient);
+    expect(restClient.client).to.be.an.instanceof(restifyClients.JsonClient);
   });
 
   it('should have credentialsProvider defined', function () {
@@ -90,6 +90,15 @@ describe('RestClient', function () {
     it('#put', function (done) {
       var data = {};
       restClient.put('/api/v1/resource/foos', data, function () {
+        expect(preSpy).to.be.calledWith(restClient);
+        expect(postSpy).to.be.calledWith(restClient);
+        done();
+      });
+    });
+
+    it('#patch', function (done) {
+      var data = {};
+      restClient.patch('/api/v1/resource/foos', data, function () {
         expect(preSpy).to.be.calledWith(restClient);
         expect(postSpy).to.be.calledWith(restClient);
         done();
@@ -172,6 +181,30 @@ describe('RestClient', function () {
     });
   });
 
+  describe('#patch', function () {
+    it('should be defined', function () {
+      expect(restClient.patch).to.be.a('function');
+    });
+
+    it('should send request with data', function (done) {
+      restClient.patch('/api/v1/resources/bar', payload, function (err, req, res, body) {
+        expect(body).to.eql({
+          data: 'foo'
+        });
+        done();
+      });
+    });
+
+    it('should send request without data', function (done) {
+      restClient.patch('/api/v1/resources/bar', function (err, req, res, body) {
+        expect(body).to.eql({
+          data: 'no data'
+        });
+        done();
+      });
+    });
+  });
+
   describe('#del', function () {
     it('should be defined', function () {
       expect(restClient.del).to.be.a('function');
@@ -190,6 +223,14 @@ describe('RestClient', function () {
   describe('#destroy', function () {
     it('should be defined', function () {
       expect(restClient.destroy).to.be.a('function');
+    });
+
+    it('should destroy object', function () {
+      restClient.destroy();
+
+      expect(restClient.client).equal(null);
+      expect(restClient.options).equal(null);
+      expect(restClient.credentialsProvider).equal(null);
     });
   });
 });
