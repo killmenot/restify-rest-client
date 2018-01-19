@@ -2,111 +2,118 @@
 
 'use strict';
 
-var chai = require('chai');
-var expect = chai.expect;
-var sinon = require('sinon');
-var sinonChai = require('sinon-chai');
-var restifyClients = require('restify-clients');
-var server = require('./utils/server');
-var RestClient = require('../').RestClient;
-var DefaultCredentialsProvider = require('../').DefaultCredentialsProvider;
+const EventEmitter = require('events');
+const chai = require('chai');
+const expect = chai.expect;
+const sinon = require('sinon');
+const sinonChai = require('sinon-chai');
+const restifyClients = require('restify-clients');
+const server = require('./utils/server');
+const RestClient = require('../').RestClient;
+const DefaultCredentialsProvider = require('../').DefaultCredentialsProvider;
 
 chai.use(sinonChai);
 
-describe('RestClient', function () {
-  var restClient;
-  var sandbox;
-  var port = process.env.PORT || 10000;
-  var options = {
+describe('RestClient', () => {
+  let restClient;
+  let sandbox;
+  let port = process.env.PORT || 10000;
+
+  const options = {
     restify: {
       url: 'http://localhost:' + port
     }
   };
-  var payload = {
+  const payload = {
     data: 'foo'
   };
 
-  before(function (done) {
-    server.listen(port, function () {
+  before((done) => {
+    server.listen(port, () => {
       restClient = new RestClient(options);
       done();
     });
   });
 
-  after(function () {
+  after(() => {
     server.close();
   });
 
-  beforeEach(function () {
+  beforeEach(() => {
     sandbox = sinon.sandbox.create();
   });
 
-  afterEach(function () {
+  afterEach(() => {
     sandbox.restore();
   });
 
-  it('should be defined', function () {
+  it('should be defined', () => {
     expect(RestClient).to.be.a('function');
+    
   });
 
-  it('should have options defined', function () {
+  it('should be instance of event emitter', () => {
+    expect(restClient).to.be.an.instanceof(EventEmitter);
+  });
+
+  it('should have options defined', () => {
     expect(restClient.options).to.be.an('object');
   });
 
-  it('should have client defined', function () {
+  it('should have client defined', () => {
     expect(restClient.client).to.be.an.instanceof(restifyClients.JsonClient);
   });
 
-  it('should have credentialsProvider defined', function () {
+  it('should have credentialsProvider defined', () => {
     expect(restClient.credentialsProvider).to.be.an.instanceof(DefaultCredentialsProvider);
   });
 
-  describe('hooks', function () {
-    var preSpy;
-    var postSpy;
+  describe('hooks', () => {
+    let preSpy;
+    let postSpy;
 
-    beforeEach(function () {
+    beforeEach(() => {
       preSpy = sandbox.spy(restClient.credentialsProvider, 'pre');
       postSpy = sandbox.spy(restClient.credentialsProvider, 'post');
     });
 
-    it('#get', function (done) {
-      restClient.get('/api/v1/resources', function () {
+    it('#get', (done) => {
+      restClient.get('/api/v1/resources', () => {
         expect(preSpy).to.be.calledWith(restClient);
         expect(postSpy).to.be.calledWith(restClient);
         done();
       });
     });
 
-    it('#post', function (done) {
-      var data = {};
-      restClient.post('/api/v1/resources', data, function () {
+    it('#post', (done) => {
+      const data = {};
+      restClient.post('/api/v1/resources', data, () => {
         expect(preSpy).to.be.calledWith(restClient);
         expect(postSpy).to.be.calledWith(restClient);
         done();
       });
     });
 
-    it('#put', function (done) {
-      var data = {};
-      restClient.put('/api/v1/resource/foos', data, function () {
+    it('#put', (done) => {
+      const data = {};
+      restClient.put('/api/v1/resource/foos', data, () => {
         expect(preSpy).to.be.calledWith(restClient);
         expect(postSpy).to.be.calledWith(restClient);
         done();
       });
     });
 
-    it('#patch', function (done) {
-      var data = {};
-      restClient.patch('/api/v1/resource/foos', data, function () {
+    it('#patch', (done) => {
+      const data = {};
+      restClient.patch('/api/v1/resource/foos', data, () => {
         expect(preSpy).to.be.calledWith(restClient);
         expect(postSpy).to.be.calledWith(restClient);
         done();
       });
     });
 
-    it('#del', function (done) {
-      restClient.del('/api/v1/resources/bar', function () {
+    it('#del', (done) => {
+      restClient.del('/api/v1/resources/bar', () => {
         expect(preSpy).to.be.calledWith(restClient);
         expect(postSpy).to.be.calledWith(restClient);
         done();
@@ -114,16 +121,16 @@ describe('RestClient', function () {
     });
   });
 
-  describe('#get', function () {
-    beforeEach(function () {
+  describe('#get', () => {
+    beforeEach(() => {
       sandbox = sinon.sandbox.create();
     });
 
-    it('should be defined', function () {
+    it('should be defined', () => {
       expect(restClient.get).to.be.a('function');
     });
 
-    it('should send request', function (done) {
+    it('should send request', (done) => {
       restClient.get('/api/v1/resources', function (err, req, res, body) {
         expect(body).to.eql({
           data: 'no data'
@@ -133,12 +140,12 @@ describe('RestClient', function () {
     });
   });
 
-  describe('#post', function () {
-    it('should be defined', function () {
+  describe('#post', () => {
+    it('should be defined', () => {
       expect(restClient.post).to.be.a('function');
     });
 
-    it('should send request with data', function (done) {
+    it('should send request with data', (done) => {
       restClient.post('/api/v1/resources', payload, function (err, req, res, body) {
         expect(body).to.eql({
           data: 'foo'
@@ -147,7 +154,7 @@ describe('RestClient', function () {
       });
     });
 
-    it('should send request without data', function (done) {
+    it('should send request without data', (done) => {
       restClient.post('/api/v1/resources', function (err, req, res, body) {
         expect(body).to.eql({
           data: 'no data'
@@ -157,12 +164,12 @@ describe('RestClient', function () {
     });
   });
 
-  describe('#put', function () {
-    it('should be defined', function () {
+  describe('#put', () => {
+    it('should be defined', () => {
       expect(restClient.put).to.be.a('function');
     });
 
-    it('should send request with data', function (done) {
+    it('should send request with data', (done) => {
       restClient.put('/api/v1/resources/bar', payload, function (err, req, res, body) {
         expect(body).to.eql({
           data: 'foo'
@@ -171,7 +178,7 @@ describe('RestClient', function () {
       });
     });
 
-    it('should send request without data', function (done) {
+    it('should send request without data', (done) => {
       restClient.put('/api/v1/resources/bar', function (err, req, res, body) {
         expect(body).to.eql({
           data: 'no data'
@@ -181,12 +188,12 @@ describe('RestClient', function () {
     });
   });
 
-  describe('#patch', function () {
-    it('should be defined', function () {
+  describe('#patch', () => {
+    it('should be defined', () => {
       expect(restClient.patch).to.be.a('function');
     });
 
-    it('should send request with data', function (done) {
+    it('should send request with data', (done) => {
       restClient.patch('/api/v1/resources/bar', payload, function (err, req, res, body) {
         expect(body).to.eql({
           data: 'foo'
@@ -195,7 +202,7 @@ describe('RestClient', function () {
       });
     });
 
-    it('should send request without data', function (done) {
+    it('should send request without data', (done) => {
       restClient.patch('/api/v1/resources/bar', function (err, req, res, body) {
         expect(body).to.eql({
           data: 'no data'
@@ -205,12 +212,12 @@ describe('RestClient', function () {
     });
   });
 
-  describe('#del', function () {
-    it('should be defined', function () {
+  describe('#del', () => {
+    it('should be defined', () => {
       expect(restClient.del).to.be.a('function');
     });
 
-    it('should send request', function (done) {
+    it('should send request', (done) => {
       restClient.del('/api/v1/resources/bar', function (err, req, res, body) {
         expect(body).to.eql({
           data: 'no data'
@@ -220,12 +227,12 @@ describe('RestClient', function () {
     });
   });
 
-  describe('#destroy', function () {
-    it('should be defined', function () {
+  describe('#destroy', () => {
+    it('should be defined', () => {
       expect(restClient.destroy).to.be.a('function');
     });
 
-    it('should destroy object', function () {
+    it('should destroy object', () => {
       restClient.destroy();
 
       expect(restClient.client).equal(null);

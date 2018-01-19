@@ -4,6 +4,7 @@
   "camelcase": true,
   "curly": true,
   "forin": true,
+  "esversion": 6,
   "immed": true,
   "latedef": true,
   "newcap": true,
