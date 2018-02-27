@@ -3,6 +3,9 @@
   "description": "Restify REST client",
   "version": "1.2.1",
   "main": "index.js",
+  "engines": {
+    "node": ">=4"
+  },
   "author": {
     "name": "Alexey Kucherenko",
     "url": "https://github.com/killmenot"
@@ -42,6 +45,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "debug": "^3.1.0",
     "hooker": "^0.2.3",
     "restify-clients": "^2.0.0"
   },
