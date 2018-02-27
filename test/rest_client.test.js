@@ -122,15 +122,7 @@ describe('RestClient', () => {
   });
 
   describe('#get', () => {
-    beforeEach(() => {
-      sandbox = sinon.sandbox.create();
-    });
-
-    it('should be defined', () => {
-      expect(restClient.get).to.be.a('function');
-    });
-
-    it('should send request', (done) => {
+    it('should send GET request (callback)', (done) => {
       restClient.get('/api/v1/resources', function (err, req, res, body) {
         expect(body).to.eql({
           data: 'no data'
@@ -141,11 +133,7 @@ describe('RestClient', () => {
   });
 
   describe('#post', () => {
-    it('should be defined', () => {
-      expect(restClient.post).to.be.a('function');
-    });
-
-    it('should send request with data', (done) => {
+    it('should send POST request with data (callback)', (done) => {
       restClient.post('/api/v1/resources', payload, function (err, req, res, body) {
         expect(body).to.eql({
           data: 'foo'
@@ -154,7 +142,7 @@ describe('RestClient', () => {
       });
     });
 
-    it('should send request without data', (done) => {
+    it('should send POST request without data (callback)', (done) => {
       restClient.post('/api/v1/resources', function (err, req, res, body) {
         expect(body).to.eql({
           data: 'no data'
@@ -165,11 +153,7 @@ describe('RestClient', () => {
   });
 
   describe('#put', () => {
-    it('should be defined', () => {
-      expect(restClient.put).to.be.a('function');
-    });
-
-    it('should send request with data', (done) => {
+    it('should send PUT request with data (callback)', (done) => {
       restClient.put('/api/v1/resources/bar', payload, function (err, req, res, body) {
         expect(body).to.eql({
           data: 'foo'
@@ -178,7 +162,7 @@ describe('RestClient', () => {
       });
     });
 
-    it('should send request without data', (done) => {
+    it('should send PUT request without data (callback)', (done) => {
       restClient.put('/api/v1/resources/bar', function (err, req, res, body) {
         expect(body).to.eql({
           data: 'no data'
@@ -189,11 +173,7 @@ describe('RestClient', () => {
   });
 
   describe('#patch', () => {
-    it('should be defined', () => {
-      expect(restClient.patch).to.be.a('function');
-    });
-
-    it('should send request with data', (done) => {
+    it('should send PATCH request with data (callback)', (done) => {
       restClient.patch('/api/v1/resources/bar', payload, function (err, req, res, body) {
         expect(body).to.eql({
           data: 'foo'
@@ -202,7 +182,7 @@ describe('RestClient', () => {
       });
     });
 
-    it('should send request without data', (done) => {
+    it('should send PATCH request without data (callback)', (done) => {
       restClient.patch('/api/v1/resources/bar', function (err, req, res, body) {
         expect(body).to.eql({
           data: 'no data'
@@ -213,11 +193,7 @@ describe('RestClient', () => {
   });
 
   describe('#del', () => {
-    it('should be defined', () => {
-      expect(restClient.del).to.be.a('function');
-    });
-
-    it('should send request', (done) => {
+    it('should send DELETE request (callback)', (done) => {
       restClient.del('/api/v1/resources/bar', function (err, req, res, body) {
         expect(body).to.eql({
           data: 'no data'
@@ -228,10 +204,6 @@ describe('RestClient', () => {
   });
 
   describe('#destroy', () => {
-    it('should be defined', () => {
-      expect(restClient.destroy).to.be.a('function');
-    });
-
     it('should destroy object', () => {
       restClient.destroy();
 

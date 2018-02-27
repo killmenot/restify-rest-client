@@ -1,7 +1,7 @@
 'use strict';
 
-var restify = require('restify');
-var bodyParser = require('body-parser');
+const restify = require('restify');
+const bodyParser = require('body-parser');
 
 function respond(req, res, next) {
   res.json({
@@ -10,8 +10,8 @@ function respond(req, res, next) {
   next();
 }
 
-var server = restify.createServer();
-server.use(bodyParser());
+const server = restify.createServer();
+server.use(bodyParser.json());
 
 server.get('/api/v1/resources', respond);
 server.post('/api/v1/resources', respond);

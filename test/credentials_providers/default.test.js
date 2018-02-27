@@ -2,33 +2,32 @@
 
 'use strict';
 
-var path = require('path');
-var DefaultCredentialsProvider = require(path.join(process.cwd(), '/')).DefaultCredentialsProvider;
-var expect = require('chai').expect;
+const DefaultCredentialsProvider = require('../../').DefaultCredentialsProvider;
+const expect = require('chai').expect;
 
-describe('DefaultCredentialsProvider', function () {
-  var credentialsProvider;
+describe('DefaultCredentialsProvider', () => {
+  let credentialsProvider;
 
-  beforeEach(function () {
+  beforeEach(() => {
     credentialsProvider = new DefaultCredentialsProvider();
   });
 
-  it('should be defined', function () {
+  it('should be defined', () => {
     expect(DefaultCredentialsProvider).to.be.a('function');
   });
 
-  it('should have name', function () {
+  it('should have name', () => {
     expect(credentialsProvider.name).to.equal('default');
   });
 
-  describe('#pre', function () {
-    it('should be defined', function () {
+  describe('#pre', () => {
+    it('should be defined', () => {
       expect(credentialsProvider.pre).to.be.a('function');
     });
   });
 
-  describe('#post', function () {
-    it('should be defined', function () {
+  describe('#post', () => {
+    it('should be defined', () => {
       expect(credentialsProvider.pre).to.be.a('function');
     });
   });
