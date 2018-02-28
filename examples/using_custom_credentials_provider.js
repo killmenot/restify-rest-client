@@ -1,22 +1,20 @@
 'use strict';
 
-var RestClient = require('restify-rest-client');
-var CustomCredentialsProvider = require('./custom_credentials_provider');
+const RestClient = require('restify-rest-client');
+const CustomCredentialsProvider = require('./custom_credentials_provider');
 
-var auth = {
+const auth = {
   username: 'admin',
   password: 'secret'
 };
-
-var options = {
+const options = {
   credentialsProvider: new CustomCredentialsProvider(auth),
   restify: {
     url: 'https://api.example.org'
   }
 };
-
-var restClient = new RestClient(options);
-restClient.get('/protected-url', function (err, req, res, body) {
+const restClient = new RestClient(options);
+restClient.get('/protected-url', (err, req, res, body) => {
   if (err) {
     return console.error(err);
   }

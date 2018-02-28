@@ -17,19 +17,33 @@ npm install restify-rest-client
 ```javascript
 'use strict';
 
-var RestClient = require('restify-rest-client');
-var options = {
+const RestClient = require('restify-rest-client');
+
+const options = {
   restify: {
     url: 'https://api.example.org'
   }
 };
+const restClient = new RestClient(options);
 
-var restClient = new RestClient(options);
-restClient.get('/users/100/groups', function (err, req, res, body) {
+// node callback style
+restClient.get('/users/100/groups', (err, req, res, body) => {
   if (err) {
     return console.error(err);
   }
 
+  console.log('body: %s', JSON.stringify(body));
+});
+
+// or using promise
+restClient.get('/users/100/groups').then((result) => {
+  console.log('req:', result[0]);
+  console.log('res:', result[1]);
+  console.log('body: %s', JSON.stringify(result[2]));
+});
+
+// using promise-spread or bluebird packages
+restClient.get('/users/100/groups').spread((req, res, body) => {
   console.log('body: %s', JSON.stringify(body));
 });
 ```
@@ -40,7 +54,7 @@ You can refer to other [examples](/examples) as a starting point for your web ap
 ## Options
 
   * **options**
-      * **restify** - the restify json client options. Read more [here](http://restify.com/#jsonclient)
+      * **restify** - the restify json client options. Read more [here](http://restify.com/docs/client-guide/)
       * **credentialsProvider** - the credentials provider instance. Default: `new DefaultCredentialsProvider()`
 
 

@@ -6,13 +6,13 @@ const EventEmitter = require('events');
 const chai = require('chai');
 const expect = chai.expect;
 const sinon = require('sinon');
-const sinonChai = require('sinon-chai');
 const restifyClients = require('restify-clients');
 const server = require('./utils/server');
 const RestClient = require('../').RestClient;
 const DefaultCredentialsProvider = require('../').DefaultCredentialsProvider;
 
-chai.use(sinonChai);
+chai.use(require('sinon-chai'));
+require('promise-spread')(Promise);
 
 describe('RestClient', () => {
   let restClient;
@@ -130,6 +130,15 @@ describe('RestClient', () => {
         done();
       });
     });
+
+    it('should send GET request (promise)', (done) => {
+      restClient.get('/api/v1/resources').spread((req, res, body) => {
+        expect(body).to.eql({
+          data: 'no data'
+        });
+        done();
+      });
+    });
   });
 
   describe('#post', () => {
@@ -142,8 +151,26 @@ describe('RestClient', () => {
       });
     });
 
+    it('should send POST request with data (promise)', (done) => {
+      restClient.post('/api/v1/resources', payload).spread((req, res, body) => {
+        expect(body).to.eql({
+          data: 'foo'
+        });
+        done();
+      });
+    });
+
     it('should send POST request without data (callback)', (done) => {
       restClient.post('/api/v1/resources', function (err, req, res, body) {
+        expect(body).to.eql({
+          data: 'no data'
+        });
+        done();
+      });
+    });
+
+    it('should send POST request without data (promise)', (done) => {
+      restClient.post('/api/v1/resources').spread((req, res, body) => {
         expect(body).to.eql({
           data: 'no data'
         });
@@ -162,8 +189,26 @@ describe('RestClient', () => {
       });
     });
 
+    it('should send PUT request with data (promise)', (done) => {
+      restClient.put('/api/v1/resources/bar', payload).spread((req, res, body) => {
+        expect(body).to.eql({
+          data: 'foo'
+        });
+        done();
+      });
+    });
+
     it('should send PUT request without data (callback)', (done) => {
       restClient.put('/api/v1/resources/bar', function (err, req, res, body) {
+        expect(body).to.eql({
+          data: 'no data'
+        });
+        done();
+      });
+    });
+
+    it('should send PUT request without data (promise)', (done) => {
+      restClient.put('/api/v1/resources/bar').spread((req, res, body) => {
         expect(body).to.eql({
           data: 'no data'
         });
@@ -182,8 +227,26 @@ describe('RestClient', () => {
       });
     });
 
+    it('should send PATCH request with data (promise)', (done) => {
+      restClient.patch('/api/v1/resources/bar', payload).spread((req, res, body) => {
+        expect(body).to.eql({
+          data: 'foo'
+        });
+        done();
+      });
+    });
+
     it('should send PATCH request without data (callback)', (done) => {
       restClient.patch('/api/v1/resources/bar', function (err, req, res, body) {
+        expect(body).to.eql({
+          data: 'no data'
+        });
+        done();
+      });
+    });
+
+    it('should send PATCHrequest without data (promise)', (done) => {
+      restClient.patch('/api/v1/resources/bar').spread((req, res, body) => {
         expect(body).to.eql({
           data: 'no data'
         });
@@ -195,6 +258,15 @@ describe('RestClient', () => {
   describe('#del', () => {
     it('should send DELETE request (callback)', (done) => {
       restClient.del('/api/v1/resources/bar', function (err, req, res, body) {
+        expect(body).to.eql({
+          data: 'no data'
+        });
+        done();
+      });
+    });
+
+    it('should send DELETE request (promise)', (done) => {
+      restClient.del('/api/v1/resources/bar').spread((req, res, body) => {
         expect(body).to.eql({
           data: 'no data'
         });

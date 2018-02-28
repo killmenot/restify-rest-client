@@ -1,13 +1,7 @@
 'use strict';
 
-var RestClient = require('restify-rest-client');
-var util = require('util');
-
-var options = {
-  restify: {
-    url: 'https://api.example.org'
-  }
-};
+const RestClient = require('restify-rest-client');
+const util = require('util');
 
 function ExampleRestClient() {
   RestClient.apply(this, arguments);
@@ -16,13 +10,18 @@ function ExampleRestClient() {
 util.inherits(ExampleRestClient, RestClient);
 
 ExampleRestClient.prototype.getUserGroups = function (userId, cb) {
-  this.get('/users/' + userId + '/group', function (err, req, res, body) {
+  this.get('/users/' + userId + '/group', (err, req, res, body) => {
     cb(err, body);
   });
 };
 
-var restClient = new ExampleRestClient(options);
-restClient.getUserGroups(200, function (err, body) {
+const options = {
+  restify: {
+    url: 'https://api.example.org'
+  }
+};
+const restClient = new ExampleRestClient(options);
+restClient.getUserGroups(200, (err, body) => {
   if (err) {
     return console.error(err);
   }
