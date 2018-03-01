@@ -2,7 +2,7 @@
 
 'use strict';
 
-const DefaultCredentialsProvider = require('../../').DefaultCredentialsProvider;
+const DefaultCredentialsProvider = require('../../src').DefaultCredentialsProvider;
 const expect = require('chai').expect;
 
 describe('DefaultCredentialsProvider', () => {

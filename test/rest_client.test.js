@@ -8,8 +8,8 @@ const expect = chai.expect;
 const sinon = require('sinon');
 const restifyClients = require('restify-clients');
 const server = require('./utils/server');
-const RestClient = require('../').RestClient;
-const DefaultCredentialsProvider = require('../').DefaultCredentialsProvider;
+const RestClient = require('../src').RestClient;
+const DefaultCredentialsProvider = require('../src').DefaultCredentialsProvider;
 
 chai.use(require('sinon-chai'));
 require('promise-spread')(Promise);
