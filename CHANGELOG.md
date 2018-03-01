@@ -1,4 +1,9 @@
 
+<a name="1.3.1"></a>
+### 1.3.1 (2018-03-01)
+
+ * build via babel for compapability
+
 <a name="1.3.0"></a>
 ### 1.3.0 (2018-02-28)
 
