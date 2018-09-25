@@ -1,3 +1,11 @@
+# CHANGELOG
+
+<a name="2.0.0"></a>
+### 2.0.0 (2018-09-26)
+
+ * bump dependencies
+ * Drop support node.js < 6
+
 
 <a name="1.3.2"></a>
 ### 1.3.2 (2018-03-01)
