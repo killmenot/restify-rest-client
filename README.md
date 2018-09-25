@@ -2,7 +2,7 @@
 
 Yet another REST client based on Restify.
 
-[![Build Status](https://travis-ci.org/killmenot/restify-rest-client.svg?branch=master)](https://travis-ci.org/killmenot/restify-rest-client) [![Coverage Status](https://coveralls.io/repos/github/killmenot/restify-rest-client/badge.svg?branch=master)](https://coveralls.io/github/killmenot/restify-rest-client?branch=master) [![Dependency Status](https://gemnasium.com/badges/github.com/killmenot/restify-rest-client.svg)](https://gemnasium.com/github.com/killmenot/restify-rest-client) [![npm version](https://badge.fury.io/js/restify-rest-client.svg)](https://badge.fury.io/js/restify-rest-client)
+[![Build Status](https://travis-ci.org/killmenot/restify-rest-client.svg?branch=master)](https://travis-ci.org/killmenot/restify-rest-client) [![Coverage Status](https://coveralls.io/repos/github/killmenot/restify-rest-client/badge.svg?branch=master)](https://coveralls.io/github/killmenot/restify-rest-client?branch=master) [![Dependency Status](https://david-dm.org/killmenot/restify-rest-client.svg)](https://david-dm.org/killmenot/restify-rest-client) [![npm version](https://img.shields.io/npm/v/restify-rest-client.svg)](https://www.npmjs.com/package/restify-rest-client)
 
 
 ## Install

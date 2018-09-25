@@ -1,5 +1,3 @@
-/* globals before, after, beforeEach, afterEach, describe, it */
-
 'use strict';
 
 const EventEmitter = require('events');
@@ -40,7 +38,7 @@ describe('RestClient', () => {
   });
 
   beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
   });
 
   afterEach(() => {
@@ -48,24 +46,24 @@ describe('RestClient', () => {
   });
 
   it('should be defined', () => {
-    expect(RestClient).to.be.a('function');
+    expect(RestClient).be.a('function');
     
   });
 
   it('should be instance of event emitter', () => {
-    expect(restClient).to.be.an.instanceof(EventEmitter);
+    expect(restClient).be.an.instanceof(EventEmitter);
   });
 
   it('should have options defined', () => {
-    expect(restClient.options).to.be.an('object');
+    expect(restClient.options).be.an('object');
   });
 
   it('should have client defined', () => {
-    expect(restClient.client).to.be.an.instanceof(restifyClients.JsonClient);
+    expect(restClient.client).be.an.instanceof(restifyClients.JsonClient);
   });
 
   it('should have credentialsProvider defined', () => {
-    expect(restClient.credentialsProvider).to.be.an.instanceof(DefaultCredentialsProvider);
+    expect(restClient.credentialsProvider).be.an.instanceof(DefaultCredentialsProvider);
   });
 
   describe('hooks', () => {
@@ -79,8 +77,8 @@ describe('RestClient', () => {
 
     it('#get', (done) => {
       restClient.get('/api/v1/resources', () => {
-        expect(preSpy).to.be.calledWith(restClient);
-        expect(postSpy).to.be.calledWith(restClient);
+        expect(preSpy).be.calledWith(restClient);
+        expect(postSpy).be.calledWith(restClient);
         done();
       });
     });
@@ -88,8 +86,8 @@ describe('RestClient', () => {
     it('#post', (done) => {
       const data = {};
       restClient.post('/api/v1/resources', data, () => {
-        expect(preSpy).to.be.calledWith(restClient);
-        expect(postSpy).to.be.calledWith(restClient);
+        expect(preSpy).be.calledWith(restClient);
+        expect(postSpy).be.calledWith(restClient);
         done();
       });
     });
@@ -97,8 +95,8 @@ describe('RestClient', () => {
     it('#put', (done) => {
       const data = {};
       restClient.put('/api/v1/resource/foos', data, () => {
-        expect(preSpy).to.be.calledWith(restClient);
-        expect(postSpy).to.be.calledWith(restClient);
+        expect(preSpy).be.calledWith(restClient);
+        expect(postSpy).be.calledWith(restClient);
         done();
       });
     });
@@ -106,16 +104,16 @@ describe('RestClient', () => {
     it('#patch', (done) => {
       const data = {};
       restClient.patch('/api/v1/resource/foos', data, () => {
-        expect(preSpy).to.be.calledWith(restClient);
-        expect(postSpy).to.be.calledWith(restClient);
+        expect(preSpy).be.calledWith(restClient);
+        expect(postSpy).be.calledWith(restClient);
         done();
       });
     });
 
     it('#del', (done) => {
       restClient.del('/api/v1/resources/bar', () => {
-        expect(preSpy).to.be.calledWith(restClient);
-        expect(postSpy).to.be.calledWith(restClient);
+        expect(preSpy).be.calledWith(restClient);
+        expect(postSpy).be.calledWith(restClient);
         done();
       });
     });
@@ -124,7 +122,7 @@ describe('RestClient', () => {
   describe('#get', () => {
     it('should send GET request (callback)', (done) => {
       restClient.get('/api/v1/resources', function (err, req, res, body) {
-        expect(body).to.eql({
+        expect(body).eql({
           data: 'no data'
         });
         done();
@@ -133,7 +131,7 @@ describe('RestClient', () => {
 
     it('should send GET request (promise)', (done) => {
       restClient.get('/api/v1/resources').spread((req, res, body) => {
-        expect(body).to.eql({
+        expect(body).eql({
           data: 'no data'
         });
         done();
@@ -144,7 +142,7 @@ describe('RestClient', () => {
   describe('#post', () => {
     it('should send POST request with data (callback)', (done) => {
       restClient.post('/api/v1/resources', payload, function (err, req, res, body) {
-        expect(body).to.eql({
+        expect(body).eql({
           data: 'foo'
         });
         done();
@@ -153,7 +151,7 @@ describe('RestClient', () => {
 
     it('should send POST request with data (promise)', (done) => {
       restClient.post('/api/v1/resources', payload).spread((req, res, body) => {
-        expect(body).to.eql({
+        expect(body).eql({
           data: 'foo'
         });
         done();
@@ -162,7 +160,7 @@ describe('RestClient', () => {
 
     it('should send POST request without data (callback)', (done) => {
       restClient.post('/api/v1/resources', function (err, req, res, body) {
-        expect(body).to.eql({
+        expect(body).eql({
           data: 'no data'
         });
         done();
@@ -171,7 +169,7 @@ describe('RestClient', () => {
 
     it('should send POST request without data (promise)', (done) => {
       restClient.post('/api/v1/resources').spread((req, res, body) => {
-        expect(body).to.eql({
+        expect(body).eql({
           data: 'no data'
         });
         done();
@@ -182,7 +180,7 @@ describe('RestClient', () => {
   describe('#put', () => {
     it('should send PUT request with data (callback)', (done) => {
       restClient.put('/api/v1/resources/bar', payload, function (err, req, res, body) {
-        expect(body).to.eql({
+        expect(body).eql({
           data: 'foo'
         });
         done();
@@ -191,7 +189,7 @@ describe('RestClient', () => {
 
     it('should send PUT request with data (promise)', (done) => {
       restClient.put('/api/v1/resources/bar', payload).spread((req, res, body) => {
-        expect(body).to.eql({
+        expect(body).eql({
           data: 'foo'
         });
         done();
@@ -200,7 +198,7 @@ describe('RestClient', () => {
 
     it('should send PUT request without data (callback)', (done) => {
       restClient.put('/api/v1/resources/bar', function (err, req, res, body) {
-        expect(body).to.eql({
+        expect(body).eql({
           data: 'no data'
         });
         done();
@@ -209,7 +207,7 @@ describe('RestClient', () => {
 
     it('should send PUT request without data (promise)', (done) => {
       restClient.put('/api/v1/resources/bar').spread((req, res, body) => {
-        expect(body).to.eql({
+        expect(body).eql({
           data: 'no data'
         });
         done();
@@ -220,7 +218,7 @@ describe('RestClient', () => {
   describe('#patch', () => {
     it('should send PATCH request with data (callback)', (done) => {
       restClient.patch('/api/v1/resources/bar', payload, function (err, req, res, body) {
-        expect(body).to.eql({
+        expect(body).eql({
           data: 'foo'
         });
         done();
@@ -229,7 +227,7 @@ describe('RestClient', () => {
 
     it('should send PATCH request with data (promise)', (done) => {
       restClient.patch('/api/v1/resources/bar', payload).spread((req, res, body) => {
-        expect(body).to.eql({
+        expect(body).eql({
           data: 'foo'
         });
         done();
@@ -238,7 +236,7 @@ describe('RestClient', () => {
 
     it('should send PATCH request without data (callback)', (done) => {
       restClient.patch('/api/v1/resources/bar', function (err, req, res, body) {
-        expect(body).to.eql({
+        expect(body).eql({
           data: 'no data'
         });
         done();
@@ -247,7 +245,7 @@ describe('RestClient', () => {
 
     it('should send PATCHrequest without data (promise)', (done) => {
       restClient.patch('/api/v1/resources/bar').spread((req, res, body) => {
-        expect(body).to.eql({
+        expect(body).eql({
           data: 'no data'
         });
         done();
@@ -258,7 +256,7 @@ describe('RestClient', () => {
   describe('#del', () => {
     it('should send DELETE request (callback)', (done) => {
       restClient.del('/api/v1/resources/bar', function (err, req, res, body) {
-        expect(body).to.eql({
+        expect(body).eql({
           data: 'no data'
         });
         done();
@@ -267,7 +265,7 @@ describe('RestClient', () => {
 
     it('should send DELETE request (promise)', (done) => {
       restClient.del('/api/v1/resources/bar').spread((req, res, body) => {
-        expect(body).to.eql({
+        expect(body).eql({
           data: 'no data'
         });
         done();

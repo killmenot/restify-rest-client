@@ -23,8 +23,8 @@ const options = {
 const restClient = new ExampleRestClient(options);
 restClient.getUserGroups(200, (err, body) => {
   if (err) {
-    return console.error(err);
+    return console.error(err); // eslint-disable-line no-console
   }
 
-  console.log('body: %s', JSON.stringify(body));
+  console.log('body: %s', JSON.stringify(body)); // eslint-disable-line no-console
 });
