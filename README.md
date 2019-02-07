@@ -2,7 +2,7 @@
 
 Yet another REST client based on Restify.
 
-[![Build Status](https://travis-ci.org/killmenot/restify-rest-client.svg?branch=master)](https://travis-ci.org/killmenot/restify-rest-client) [![Coverage Status](https://coveralls.io/repos/github/killmenot/restify-rest-client/badge.svg?branch=master)](https://coveralls.io/github/killmenot/restify-rest-client?branch=master) [![Dependency Status](https://david-dm.org/killmenot/restify-rest-client.svg)](https://david-dm.org/killmenot/restify-rest-client) [![npm version](https://img.shields.io/npm/v/restify-rest-client.svg)](https://www.npmjs.com/package/restify-rest-client)
+[![Build Status](https://travis-ci.org/killmenot/restify-rest-client.svg?branch=master)](https://travis-ci.org/killmenot/restify-rest-client) [![Coverage Status](https://coveralls.io/repos/github/killmenot/restify-rest-client/badge.svg?branch=master)](https://coveralls.io/github/killmenot/restify-rest-client?branch=master) [![dependencies Status](https://david-dm.org/killmenot/restify-rest-client/status.svg)](https://david-dm.org/killmenot/restify-rest-client) [![devDependencies Status](https://david-dm.org/killmenot/restify-rest-client/dev-status.svg)](https://david-dm.org/killmenot/restify-rest-client?type=dev) [![npm version](https://img.shields.io/npm/v/restify-rest-client.svg)](https://www.npmjs.com/package/restify-rest-client) [![Known Vulnerabilities](https://snyk.io/test/npm/restify-clients/2.0.0/badge.svg)](https://snyk.io/test/npm/restify-clients/2.0.0)
 
 
 ## Install
