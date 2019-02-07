@@ -21,7 +21,7 @@
   "nyc": {
     "all": true,
     "include": [
-      "lib/**/*.js"
+      "src/**/*.js"
     ]
   },
   "pre-commit": [
