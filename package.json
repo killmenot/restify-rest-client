@@ -59,7 +59,7 @@
     "pre-commit": "^1.2.2",
     "promise-spread": "^0.1.0",
     "restify": "^7.2.1",
-    "sinon": "^6.3.4",
+    "sinon": "^7.2.3",
     "sinon-chai": "^3.2.0"
   }
 }
