@@ -243,7 +243,7 @@ describe('RestClient', () => {
       });
     });
 
-    it('should send PATCHrequest without data (promise)', (done) => {
+    it('should send PATCH request without data (promise)', (done) => {
       restClient.patch('/api/v1/resources/bar').spread((req, res, body) => {
         expect(body).eql({
           data: 'no data'
