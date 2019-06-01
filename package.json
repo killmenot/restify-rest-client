@@ -1,10 +1,10 @@
 {
   "name": "restify-rest-client",
   "description": "Restify REST client",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "main": "lib/index.js",
   "engines": {
-    "node": ">=6"
+    "node": ">=8"
   },
   "author": {
     "name": "Alexey Kucherenko",
