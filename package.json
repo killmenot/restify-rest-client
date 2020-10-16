@@ -24,10 +24,6 @@
       "src/**/*.js"
     ]
   },
-  "pre-commit": [
-    "lint",
-    "test"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/killmenot/rest-client.git"
@@ -50,13 +46,15 @@
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",
     "coveralls": "^3.0.3",
     "eslint": "^5.16.0",
+    "husky": "^4.3.0",
     "mocha": "^6.1.4",
     "nyc": "^14.1.1",
-    "pre-commit": "^1.2.2",
     "promise-spread": "^0.1.0",
     "restify": "^8.3.2",
     "sinon": "^7.3.2",
