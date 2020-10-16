@@ -53,9 +53,9 @@ You can refer to other [examples](/examples) as a starting point for your web ap
 
 ## Options
 
-  * **options**
-      * **restify** - the restify json client options. Read more [here](http://restify.com/docs/client-guide/)
-      * **credentialsProvider** - the credentials provider instance. Default: `new DefaultCredentialsProvider()`
+*   **options**
+      *   **restify** - the restify json client options. Read more [here](http://restify.com/docs/client-guide/)
+      *   **credentialsProvider** - the credentials provider instance. Default: `new DefaultCredentialsProvider()`
 
 
 ## License
