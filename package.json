@@ -40,7 +40,7 @@
   "dependencies": {
     "debug": "^4.2.0",
     "hooker": "^0.2.3",
-    "restify-clients": "^2.6.6"
+    "restify-clients": "^4.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",
