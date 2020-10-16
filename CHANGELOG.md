@@ -1,17 +1,25 @@
 # CHANGELOG
 
+<a name="4.0.0"></a>
+### 4.0.0 (2020-10-16)
+
+*   drop support node.js < 10
+*   chore: bump deps
+*   chore: add remarklint
+*   chore: add commitlint
+
 <a name="3.0.0"></a>
 ### 3.0.0 (2019-06-02)
 
 *   bump dependencies
-*   Drop support node.js < 8
+*   drop support node.js < 8
 
 
 <a name="2.0.0"></a>
 ### 2.0.0 (2018-09-26)
 
 *   bump dependencies
-*   Drop support node.js < 6
+*   drop support node.js < 6
 
 
 <a name="1.3.2"></a>
