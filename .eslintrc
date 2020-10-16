@@ -1,41 +1,20 @@
 {
-  "extends": "eslint:recommended",
+  "extends": [
+    "standard"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
   "env": {
-    "mocha": true,
-    "node": true,
-    "es6": true
+    "mocha": true
   },
   "rules": {
-    "no-bitwise": 2,
-    "camelcase": 0,
-    "curly": 0,
-    "guard-for-in": 2,
-    "wrap-iife": [
-      2,
-      "any"
-    ],
-    "no-use-before-define": [
-      2, {
-        "functions": false
-      }
-    ],
-    "new-cap": 2,
-    "no-caller": 2,
-    "no-empty": 2,
-    "no-new": 2,
-    "quotes": [
-      2,
-      "single"
-    ],
-    "no-undef": 2,
-    "no-unused-vars": 2,
-    "comma-style": [
-      2,
-      "last"
-    ],
-    "semi": [2, "always"]
-  },
-  "globals": {
-    "expect": false
+    "space-before-function-paren": ["error", {
+      "anonymous": "always",
+      "named": "never",
+      "asyncArrow": "always"
+    }],
+    "semi": ["error", "always"]
   }
 }
