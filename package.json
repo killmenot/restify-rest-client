@@ -62,7 +62,7 @@
     "nyc": "^15.1.0",
     "promise-spread": "^0.1.0",
     "restify": "^8.3.2",
-    "sinon": "^7.3.2",
+    "sinon": "^9.2.0",
     "sinon-chai": "^3.3.0"
   }
 }
