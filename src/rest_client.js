@@ -13,6 +13,7 @@ const callbackPromise = (resolve, reject) => {
     if (err) {
       reject(err);
     } else {
+      // eslint-disable-next-line no-useless-call
       resolve.apply(null, [args]);
     }
   };

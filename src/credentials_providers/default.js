@@ -15,4 +15,3 @@ class DefaultCredentialsProvider {
 }
 
 module.exports = DefaultCredentialsProvider;
-
